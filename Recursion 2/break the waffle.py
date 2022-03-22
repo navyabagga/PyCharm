@@ -1,0 +1,6 @@
+m,n=map(int,input().split())
+hm=list(map(int,input().split()))
+vn=list(map(int,input().split()))
+ans1=((m-1)*hm)+(m*(n-1)*vn)
+ans2=((n-1)*vn)+(n*(m-1)*hm)
+print(min(ans1,ans2))
