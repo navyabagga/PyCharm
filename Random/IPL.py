@@ -1,6 +1,6 @@
 import re
 lis=[]
-for i in range(56):
+for i in range(3):
     lis.append(str(input()))
 drate={'RCB':0,'RR':0,'KKR':0,'CSK':0,'SRH':0,'MI':0,'DC':0,'PBKS':0}
 dcount={'RCB':0,'RR':0,'KKR':0,'CSK':0,'SRH':0,'MI':0,'DC':0,'PBKS':0}
