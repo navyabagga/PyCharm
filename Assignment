@@ -1,0 +1,58 @@
+def fun1(mat):
+    seats = []
+    for row in mat:
+        seats.append([["M" for i in range(row[1])] for i in range(row[0])])
+        
+    for i in range(len(seats)):
+        for j in range(len(seats[i])):
+            seats[i][j][0] = "A"
+            seats[i][j][len(seats[i][j])-1] = "A"
+            
+    for i in range(len(seats[0])):
+        seats[0][i][0] = "W"
+        
+    
+    for i in range(len(seats[-1])):
+        seats[-1][i][len(seats[-1][i])-1] = "W"
+        
+    return seats
+
+def fun2(val, counter, seats, col, row):
+    for i in range(col):
+        for j in range(row):
+            if j>= len(seats) or i>=len(seats[j]):
+                continue
+            for k in range(len(seats[j][i])):
+                if j<len(seats) and i<len(seats[j]) and seats[j][i][k]==val:
+                    seats[j][i][k] = counter
+                    counter += 1
+    return [seats, counter]
+    
+def fun3(seats, row, col):
+    str_ = ""
+    for i in range(col):
+        for j in range(row):
+            if j>= len(seats) or i>=len(seats[j]):
+                str_ += "_ "
+                continue
+            for k in range(len(seats[j][i])):
+                str_ += (str(seats[j][i][k])+" ")
+            str_ += ","
+        str_ += "\n"
+    print(str_)
+
+def solve(arr, n):
+    rows = max(row[0] for row in arr)
+    cols = max(row[1] for row in arr)
+    
+    seats = fun1(arr)
+    counter = 1
+    seat, counter = fun2("A", counter, seats, cols, rows )
+    seat, counter = fun2("W", counter, seats, cols, rows )
+    seat, counter = fun2("M", counter, seats, cols, rows )
+        
+    fun3(seats, rows, cols)
+
+seats = [[3,2], [4,3], [2,3], [3,4]]
+n = int(input())
+solve(seats, n)
